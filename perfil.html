@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil en el Ciclo</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #ddd7c8;
+            font-family: Georgia, serif;
+            color: #7a1f2b;
+        }
+
+        .container {
+
+            width: 100%;
+            max-width: 500px;
+            margin: auto;
+            padding: 25px 20px 40px 20px;
+        }
+
+        h1 {
+
+            text-align: center;
+            font-size: 30px;
+            font-weight: normal;
+            margin-bottom: 25px;
+        }
+
+        .instantanea {
+
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 25px auto;
+            border: 2px solid #7a1f2b;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            cursor: pointer;
+            font-size: 14px;
+            color: #7a1f2b;
+        }
+
+        .presentacion {
+
+            margin-bottom: 25px;
+            font-size: 16px;
+        }
+
+        .campo {
+
+            margin-bottom: 18px;
+        }
+
+        label {
+
+            display: block;
+            margin-bottom: 6px;
+            font-size: 15px;
+        }
+
+        input {
+
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #b7b0a3;
+            border-radius: 8px;
+            font-size: 16px;
+            background: white;
+        }
+
+        .boton {
+
+            width: 100%;
+            margin-top: 25px;
+            padding: 14px;
+            border: 1px solid #7a1f2b;
+            border-radius: 25px;
+            background: transparent;
+            color: #7a1f2b;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .boton:hover {
+
+            background: #7a1f2b;
+            color: white;
+        }
+    </style>
+
+</head>
+
+<body>
+
+        <div class="instantanea" id="preview">
+        
+            <video id="video" autoplay playsinline style="width:100%;height:100%;object-fit:cover;border-radius:50%;">
+            </video>
+        
+        </div>
+        
+        <!--
+        <input type="file" id="camara" accept="image/*" capture="user" style="display:none;">
+        -->
+
+        <div class="presentacion">
+            Presentate para participar:
+        </div>
+
+        <div class="campo">
+            <label>Nombre</label>
+            <input type="text" id="nombre" oninput="localStorage.setItem('hg_nombre', this.value)">
+        </div>
+        
+        <div class="campo">
+            <label>Correo electrónico</label>
+            <input type="email">
+        </div>
+
+        <div class="campo">
+            <label>Número de documento (sin puntos ni guiones)</label>
+            <input type="text" maxlength="8" inputmode="numeric">
+        </div>
+
+        <div class="campo">
+            <label>Nacionalidad</label>
+            <input type="text">
+        </div>
+
+        <div class="campo">
+            <label>Fecha de nacimiento</label>
+            <input type="date">
+        </div>
+
+        <div class="campo">
+            <label>Teléfono</label>
+            <input type="tel">
+        </div>
+
+        <button class="boton" onclick="window.location.href='invitacion.html'">
+            CONTINUAR
+        </button>
+        <button class="boton" onclick="window.location.href='normas.html'">
+            VOLVER
+        </button>
+
+    </div>
+</body>
+
+<script>
+
+    const preview = document.getElementById('preview');
+    const video = document.getElementById('video');
+
+    navigator.mediaDevices.getUserMedia({
+        video: {
+            facingMode: "user"
+        }
+    })
+        .then(stream => {
+
+            video.srcObject = stream;
+            preview.addEventListener('click', function () {
+
+                const canvas = document.createElement('canvas');
+
+                canvas.width = video.videoWidth;
+                canvas.height = video.videoHeight;
+
+                const ctx = canvas.getContext('2d');
+
+                ctx.drawImage(
+                    video,
+                    0,
+                    0,
+                    canvas.width,
+                    canvas.height
+                );
+
+                const foto = canvas.toDataURL('image/png');
+
+                localStorage.setItem(
+                    'hg_foto_perfil',
+                    foto
+                );
+                preview.innerHTML =
+                    '<img src="' + foto + '" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">';
+
+                stream.getTracks().forEach(
+                    track => track.stop()
+                );
+            });
+        })
+
+        .catch(error => {
+
+            console.error(error);
+            preview.innerHTML =
+                '<div style="padding:25px;text-align:center;">No se pudo acceder a la cámara.</div>';
+        });
+
+</script>
+
+</html>

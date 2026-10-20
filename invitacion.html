@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Invitación</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #ddd7c8;
+            font-family: Georgia, serif;
+            color: #7a1f2b;
+
+            min-height: 100vh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+
+            width: 100%;
+            max-width: 500px;
+
+            padding: 30px 25px;
+
+            text-align: center;
+        }
+
+        h1 {
+
+            font-size: 30px;
+            font-weight: normal;
+
+            margin-bottom: 25px;
+        }
+
+        .foto-perfil {
+
+            width: 140px;
+            height: 140px;
+
+            margin: 0 auto 15px auto;
+
+            border-radius: 50%;
+            overflow: hidden;
+
+            border: 2px solid #7a1f2b;
+        }
+
+        .foto-perfil img {
+
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+        }
+
+        .nombre-perfil {
+
+            font-size: 22px;
+            font-weight: bold;
+
+            margin-bottom: 25px;
+        }
+
+        .texto {
+
+            line-height: 1.7;
+
+            font-size: 17px;
+
+            margin-bottom: 25px;
+        }
+
+        label {
+
+            display: block;
+
+            text-align: left;
+
+            margin-bottom: 8px;
+        }
+
+        input {
+
+            width: 100%;
+
+            padding: 12px;
+
+            border: 1px solid #b7b0a3;
+            border-radius: 8px;
+
+            font-size: 16px;
+
+            margin-bottom: 25px;
+        }
+
+        button {
+
+            width: 100%;
+
+            padding: 14px;
+
+            border: 1px solid #7a1f2b;
+            border-radius: 25px;
+
+            background: transparent;
+
+            color: #7a1f2b;
+
+            font-size: 16px;
+
+            cursor: pointer;
+        }
+
+        button:hover {
+
+            background: #7a1f2b;
+            color: white;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>PERFIL COMPLETADO</h1>
+
+        <div class="foto-perfil" id="fotoPerfil"></div>
+
+        <div class="nombre-perfil" id="nombrePerfil">
+            Tu Nombre
+        </div>
+
+        <div class="texto">
+
+            Tu información ha quedado registrada.
+            <br><br>
+
+            Tu participación ha sido habilitada.
+            <br><br>
+
+            El Facilitador podrá visualizar únicamente tu
+            fotografía y tu nombre durante esta etapa.
+            <br><br>
+
+            Estamos generando tu invitación.
+
+        </div>
+
+        <label>
+            Correo electrónico del Facilitador
+        </label>
+
+        <input type="email" placeholder="correo@ejemplo.com">
+
+        <div class="texto">
+
+            Ya puedes enviar una invitación.
+
+        </div>
+
+        <button>
+            INVITAR
+        </button>
+
+    </div>
+
+    <script>
+
+        const foto = localStorage.getItem('hg_foto_perfil');
+
+        if (foto) {
+
+            document.getElementById('fotoPerfil').innerHTML =
+                '<img src="' + foto + '">';
+
+        }
+
+        const nombreGuardado =
+            localStorage.getItem('hg_nombre');
+
+        if (nombreGuardado) {
+
+            document.getElementById('nombrePerfil').textContent =
+                nombreGuardado;
+
+        }
+
+    </script>
+
+</body>
+
+</html>
