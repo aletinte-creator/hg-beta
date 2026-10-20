@@ -172,8 +172,8 @@
 
         </div>
 
-        <button>
-            INVITAR
+        <button onclick="generarInvitacion()">
+            GENERAR INVITACIÓN
         </button>
 
     </div>
@@ -186,18 +186,30 @@
 
             document.getElementById('fotoPerfil').innerHTML =
                 '<img src="' + foto + '">';
-
         }
 
         const nombreGuardado =
             localStorage.getItem('hg_nombre');
 
         if (nombreGuardado) {
-
             document.getElementById('nombrePerfil').textContent =
                 nombreGuardado;
-
         }
+
+        function generarInvitacion() {
+
+                const correo = document.querySelector('input[type="email"]').value.trim();
+
+                if (!correo) {
+                    alert('Ingrese el correo electrónico del Facilitador');
+                    return;
+                }
+                localStorage.setItem(
+                    'hg_correo_facilitador',
+                    correo
+                );
+                window.location.href = 'confirmar-invitacion-facilitador.html';
+            }
 
     </script>
 

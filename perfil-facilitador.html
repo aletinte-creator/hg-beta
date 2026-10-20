@@ -105,57 +105,58 @@
 
 <body>
 
-        <div class="instantanea" id="preview">
-        
-            <video id="video" autoplay playsinline style="width:100%;height:100%;object-fit:cover;border-radius:50%;">
-            </video>
-        
-        </div>
-        
-        <!--
+    <div class="instantanea" id="preview">
+
+        <video id="video" autoplay playsinline style="width:100%;height:100%;object-fit:cover;border-radius:50%;">
+        </video>
+
+    </div>
+
+    <!--
         <input type="file" id="camara" accept="image/*" capture="user" style="display:none;">
         -->
 
-        <div class="presentacion">
-            Presentate para participar:
-        </div>
+    <div class="presentacion">
+        Presentate para participar:
+    </div>
 
-        <div class="campo">
-            <label>Nombre</label>
-            <input type="text" id="nombre" oninput="localStorage.setItem('hg_nombre', this.value)">
-        </div>
-        
-        <div class="campo">
-            <label>Correo electrónico</label>
-            <input type="email">
-        </div>
+    <div class="campo">
+        <label>Nombre</label>
+        <input type="text" id="nombre" oninput="localStorage.setItem('hg_nombre', this.value)">
+    </div>
 
-        <div class="campo">
-            <label>Número de documento (sin puntos ni guiones)</label>
-            <input type="text" maxlength="8" inputmode="numeric">
-        </div>
+    <div class="campo">
+        <label>Correo electrónico</label>
+        <input type="email">
+    </div>
 
-        <div class="campo">
-            <label>Nacionalidad</label>
-            <input type="text">
-        </div>
+    <div class="campo">
+        <label>Número de documento (sin puntos ni guiones)</label>
+        <input type="text" maxlength="8" inputmode="numeric">
+    </div>
 
-        <div class="campo">
-            <label>Fecha de nacimiento</label>
-            <input type="date">
-        </div>
+    <div class="campo">
+        <label>Nacionalidad</label>
+        <input type="text">
+    </div>
 
-        <div class="campo">
-            <label>Teléfono</label>
-            <input type="tel">
-        </div>
+    <div class="campo">
+        <label>Fecha de nacimiento</label>
+        <input type="date">
+    </div>
 
-        <button class="boton" onclick="window.location.href='invitacion.html'">
-            CONTINUAR
-        </button>
-        <button class="boton" onclick="window.location.href='normas.html'">
-            VOLVER
-        </button>
+    <div class="campo">
+        <label>Teléfono</label>
+        <input type="tel">
+    </div>
+
+    <button class="boton" onclick="continuarPerfil()">
+        CONTINUAR
+    </button>
+
+    <button class="boton" onclick="window.location.href='normas.html'">
+        VOLVER
+    </button>
 
     </div>
 </body>
@@ -211,6 +212,19 @@
             preview.innerHTML =
                 '<div style="padding:25px;text-align:center;">No se pudo acceder a la cámara.</div>';
         });
+
+    function continuarPerfil() {
+
+            const rol = localStorage.getItem('hg_rol');
+
+            if (rol === 'FACILITADOR') {
+
+                window.location.href =
+                    'confirmar-invitacion-pretendido.html';
+
+                return;
+            }  
+      }
 
 </script>
 

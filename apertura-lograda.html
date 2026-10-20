@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fase Apertura Lograda</title>
+
+    <style>
+        body {
+            background: #ddd7c8;
+            font-family: Georgia, serif;
+            color: #7a1f2b;
+
+            min-height: 100vh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 700px;
+            padding: 30px;
+            text-align: center;
+        }
+
+        h1 {
+            font-weight: normal;
+            margin-bottom: 30px;
+        }
+
+        .fotos {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 15px;
+        }
+
+        .persona {
+            text-align: center;
+        }
+
+        .foto {
+            width: 140px;
+            height: 140px;
+
+            border-radius: 50%;
+            overflow: hidden;
+
+            border: 2px solid #7a1f2b;
+
+            margin: 0 auto 10px auto;
+        }
+
+        .foto img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .nombre-foto {
+            font-weight: bold;
+        }
+
+        .texto {
+            margin-top: 30px;
+            line-height: 1.9;
+            font-size: 17px;
+        }
+
+        .nombre {
+            font-weight: bold;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 35px;
+            padding: 14px;
+
+            border: 1px solid #7a1f2b;
+            border-radius: 25px;
+
+            background: transparent;
+
+            color: #7a1f2b;
+
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #7a1f2b;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>FASE APERTURA LOGRADA</h1>
+
+        <div class="fotos">
+
+            <div class="persona">
+
+                <div class="foto" id="fotoPretendiente"></div>
+
+                <div class="nombre-foto" id="nombreFotoPretendiente"></div>
+
+            </div>
+
+            <div class="persona">
+
+                <div class="foto" id="fotoPretendido"></div>
+
+                <div class="nombre-foto" id="nombreFotoPretendido"></div>
+
+            </div>
+
+        </div>
+
+        <div class="texto">
+
+            La primera etapa ha finalizado.
+
+            <br><br>
+
+            Ha culminado con éxito la Fase Apertura.
+
+            <br><br>
+
+            La Trilogía HG ha sido constituida:
+
+            <br><br>
+
+            Como Pretendiente:
+            <br>
+            <span class="nombre" id="pretendiente"></span>
+
+            <br><br>
+
+            Como Facilitador:
+            <br>
+            <span class="nombre" id="facilitador"></span>
+
+            <br>
+
+            A quien agradecemos especialmente su colaboración.
+
+            <br><br>
+
+            Como Pretendido/a:
+            <br>
+            <span class="nombre" id="pretendido"></span>
+
+            <br><br>
+
+            Las invitaciones ofrecidas han sido aceptadas.
+            <br>
+            Los participantes han completado su incorporación al expediente.
+
+            <br><br>
+
+            A partir de este momento, nuestra función será brindarles los medios necesarios para que puedan conocerse.
+
+            <br><br>
+
+            <strong>COMIENZA LA FASE CORTEJO</strong>
+
+            <br><br>
+
+            entre
+
+            <br><br>
+
+            <span class="nombre" id="cortejoPretendiente"></span>
+
+            <br><br>
+
+            y
+
+            <br><br>
+
+            <span class="nombre" id="cortejoPretendido"></span>
+
+            <br><br>
+
+            Que la curiosidad los acerque,
+            <br>
+            que el respeto los acompañe,
+            <br>
+            y que fluya la continuidad.
+
+            <br><br>
+
+            <strong>ÉXITOS.</strong>
+
+        </div>
+
+        <button onclick="window.location.href='cortejo.html'">
+            CONTINUAR
+        </button>
+
+    </div>
+
+    <script>
+
+        const nombrePretendiente =
+            localStorage.getItem('hg_nombre') || 'Pretendiente';
+
+        const nombreFacilitador =
+            localStorage.getItem('hg_facilitador_nombre') || 'Facilitador';
+
+        const nombrePretendido =
+            localStorage.getItem('hg_pretendido_nombre') || 'Pretendido/a';
+
+        const fotoPretendiente =
+            localStorage.getItem('hg_foto_perfil');
+
+        const fotoPretendido =
+            localStorage.getItem('hg_pretendido_foto');
+
+        document.getElementById('pretendiente').textContent =
+            nombrePretendiente;
+
+        document.getElementById('facilitador').textContent =
+            nombreFacilitador;
+
+        document.getElementById('pretendido').textContent =
+            nombrePretendido;
+
+        document.getElementById('cortejoPretendiente').textContent =
+            nombrePretendiente;
+
+        document.getElementById('cortejoPretendido').textContent =
+            nombrePretendido;
+
+        document.getElementById('nombreFotoPretendiente').textContent =
+            nombrePretendiente;
+
+        document.getElementById('nombreFotoPretendido').textContent =
+            nombrePretendido;
+
+        if (fotoPretendiente) {
+
+            document.getElementById('fotoPretendiente').innerHTML =
+                '<img src="' + fotoPretendiente + '">';
+        }
+
+        if (fotoPretendido) {
+
+            document.getElementById('fotoPretendido').innerHTML =
+                '<img src="' + fotoPretendido + '">';
+        }
+
+    </script>
+
+</body>
+
+</html>

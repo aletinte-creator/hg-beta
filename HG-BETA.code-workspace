@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "D:/HG"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "HG-BETA"
+	}
+}
