@@ -122,12 +122,12 @@
 
     <div class="campo">
         <label>Nombre</label>
-        <input type="text" id="nombre" oninput="localStorage.setItem('hg_nombre', this.value)">
+        <input type="text" id="nombre" oninput="localStorage.setItem('hg_facilitador_nombre', this.value)">
     </div>
 
     <div class="campo">
         <label>Correo electrónico</label>
-        <input type="email">
+        <input type="email" id="correoFacilitador" readonly>
     </div>
 
     <div class="campo">
@@ -193,10 +193,8 @@
 
                 const foto = canvas.toDataURL('image/png');
 
-                localStorage.setItem(
-                    'hg_foto_perfil',
-                    foto
-                );
+                localStorage.setItem('hg_facilitador_foto', foto);
+
                 preview.innerHTML =
                     '<img src="' + foto + '" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">';
 
@@ -212,6 +210,9 @@
             preview.innerHTML =
                 '<div style="padding:25px;text-align:center;">No se pudo acceder a la cámara.</div>';
         });
+
+        document.getElementById('correoFacilitador').value =
+                localStorage.getItem('hg_correo_facilitador') || '';
 
     function continuarPerfil() {
 

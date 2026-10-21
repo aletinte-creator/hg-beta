@@ -107,7 +107,7 @@
             <div class="foto-perfil" id="fotoPerfil"></div>
 
             <div class="etiqueta">
-                Participante que invita
+                El Pretendiente te Invita
             </div>
 
             <div class="dato" id="nombrePretendiente">
@@ -115,10 +115,12 @@
             </div>
 
             <div class="etiqueta">
-                Correo destino
+                Correo del Facilitador
             </div>
-
-            <div class="dato" id="correo"></div>
+            
+            <div class="campo">
+                <input type="email" id="correoFacilitador" placeholder="Ingresar correo del Facilitador">
+            </div>
 
             <div class="etiqueta">
                 Número de Expediente
@@ -143,8 +145,6 @@
             <div class="dato" id="linkHG">
                 Pendiente de backend
             </div>
-
-            <br>
 
             <p>
                 El Facilitador recibirá:
@@ -171,9 +171,6 @@
 
     <script>
 
-        document.getElementById('correo').textContent =
-            localStorage.getItem('hg_correo_facilitador') || '';
-
         document.getElementById('nombrePretendiente').textContent =
             localStorage.getItem('hg_nombre') || '';
 
@@ -190,9 +187,14 @@
 
         function enviarInvitacion() {
 
+                localStorage.setItem(
+                    'hg_correo_facilitador',
+                    document.getElementById('correoFacilitador').value
+                );
                 window.location.href =
                     'invitacion-enviada-pretendiente.html';
             }
+
     </script>
 
 </body>

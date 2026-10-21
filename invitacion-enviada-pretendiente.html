@@ -87,27 +87,35 @@
 <body>
 
     <div class="container">
-
+    
         <h1>INVITACIÓN ENVIADA</h1>
-
+    
         <div class="foto-perfil" id="fotoPerfil"></div>
-
+    
         <div class="texto">
-
+    
             La invitación ha sido preparada correctamente.
-
+    
             <br><br>
-
+    
             Participante que invita:
-
+    
             <br>
-
+    
             <strong id="nombrePretendiente"></strong>
-
+    
             <br><br>
-
+    
+            Correo del Facilitador:
+    
+            <br>
+    
+            <strong id="correoFacilitador"></strong>
+    
+            <br><br>
+    
             Estamos aguardando la respuesta del Facilitador.
-
+    
         </div>
 
         <button onclick="window.location.href='aceptacion-facilitador.html'">
@@ -120,6 +128,9 @@
 
         document.getElementById('nombrePretendiente').textContent =
             localStorage.getItem('hg_nombre') || '';
+            
+        document.getElementById('correoFacilitador').textContent =
+            localStorage.getItem('hg_correo_facilitador') || '';
 
         const foto = localStorage.getItem('hg_foto_perfil');
 

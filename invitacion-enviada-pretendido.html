@@ -17,6 +17,8 @@
             display: flex;
             justify-content: center;
             align-items: center;
+
+            margin: 0;
         }
 
         .container {
@@ -28,19 +30,14 @@
 
         h1 {
             font-weight: normal;
-            margin-bottom: 25px;
-        }
-
-        .texto {
-            line-height: 1.8;
-            font-size: 17px;
+            margin-bottom: 30px;
         }
 
         .foto-perfil {
             width: 140px;
             height: 140px;
 
-            margin: 20px auto;
+            margin: 0 auto 20px auto;
 
             border-radius: 50%;
             overflow: hidden;
@@ -54,6 +51,18 @@
             object-fit: cover;
         }
 
+        .nombre {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 25px;
+        }
+
+        .texto {
+            line-height: 1.8;
+            font-size: 18px;
+            margin-bottom: 35px;
+        }
+
         button {
             width: 100%;
             padding: 14px;
@@ -62,14 +71,9 @@
             border-radius: 25px;
 
             background: transparent;
-
             color: #7a1f2b;
 
-            font-size: 16px;
-
             cursor: pointer;
-
-            margin-top: 25px;
         }
 
         button:hover {
@@ -86,27 +90,23 @@
 
         <h1>INVITACIÓN ENVIADA</h1>
 
-        <div class="foto-perfil" id="fotoFacilitador"></div>
+        <div class="foto-perfil" id="fotoPerfil"></div>
+
+        <div class="nombre" id="nombreFacilitador">
+            Pendiente
+        </div>
 
         <div class="texto">
 
-            La invitación al Pretendido ha sido preparada correctamente.
+            Ha enviado la invitación correctamente.
 
             <br><br>
 
-            Facilitador:
-
-            <br><br>
-
-            <strong id="nombreFacilitador"></strong>
-
-            <br><br>
-
-            Estamos aguardando la respuesta del Pretendido.
+            Aguardamos la respuesta.
 
         </div>
 
-        <button onclick="window.location.href='aceptacion-pretendido.html'">
+        <button onclick="continuar()">
             CONTINUAR
         </button>
 
@@ -122,8 +122,16 @@
 
         if (foto) {
 
-            document.getElementById('fotoFacilitador').innerHTML =
+            document.getElementById('fotoPerfil').innerHTML =
                 '<img src="' + foto + '">';
+
+        }
+
+        function continuar() {
+
+            window.location.href =
+                'aceptacion-pretendido.html';
+
         }
 
     </script>
