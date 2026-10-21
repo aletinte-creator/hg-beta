@@ -122,7 +122,7 @@
 
         <div class="campo">
             <label>Nombre</label>
-            <input type="text" id="nombre" oninput="localStorage.setItem('hg_nombre', this.value)">
+            <input type="text" id="nombre" oninput="localStorage.setItem('hg_nombre_pretendiente', this.value)">
         </div>
         
         <div class="campo">
@@ -194,7 +194,7 @@
                         const foto = canvas.toDataURL('image/png');
 
                         localStorage.setItem(
-                            'hg_foto_perfil',
+                            'hg_foto_pretendiente',
                             foto
                         );
 
@@ -219,7 +219,7 @@
                 window.location.href =
                     'confirmar-invitacion-facilitador.html';
             }
-    
+
 </script>
 
 </html>

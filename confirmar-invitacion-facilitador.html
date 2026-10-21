@@ -104,7 +104,7 @@
                 Verifique cuidadosamente la información antes de enviar la invitación.
             </p>
 
-            <div class="foto-perfil" id="fotoPerfil"></div>
+            <div class="foto-pretendiente" id="fotoPretendiente"></div>
 
             <div class="etiqueta">
                 El Pretendiente te Invita
@@ -172,17 +172,17 @@
     <script>
 
         document.getElementById('nombrePretendiente').textContent =
-            localStorage.getItem('hg_nombre') || '';
+            localStorage.getItem('hg_nombre_pretendiente') || '';
 
         document.getElementById('linkHG').textContent =
             'Pendiente de backend';
 
-        const foto = localStorage.getItem('hg_foto_perfil');
+        const foto = localStorage.getItem('hg_foto_pretendiente');
 
         if (foto) {
 
-            document.getElementById('fotoPerfil').innerHTML =
-                '<img src="' + foto + '">';
+            document.getElementById('fotoPretendiente').innerHTML =
+                '<img src="' + foto + '" style="width:150px;height:150px;border-radius:50%;object-fit:cover;">';
         }
 
         function enviarInvitacion() {

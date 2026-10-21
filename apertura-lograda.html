@@ -109,7 +109,7 @@
 
                 <div class="foto" id="fotoPretendiente"></div>
 
-                <div class="nombre-foto" id="nombreFotoPretendiente"></div>
+                <div class="nombre" id="nombreFotoPretendiente"></div>
 
             </div>
 
@@ -117,7 +117,7 @@
 
                 <div class="foto" id="fotoPretendido"></div>
 
-                <div class="nombre-foto" id="nombreFotoPretendido"></div>
+                <div class="nombre" id="nombreFotoPretendido"></div>
 
             </div>
 
@@ -127,11 +127,11 @@
 
             La primera etapa ha finalizado.
 
-            <br><br>
+            <br>
 
             Ha culminado con éxito la Fase Apertura.
 
-            <br><br>
+            <br>
 
             La Trilogía HG ha sido constituida:
 
@@ -141,7 +141,7 @@
             <br>
             <span class="nombre" id="pretendiente"></span>
 
-            <br><br>
+            <br>
 
             Como Facilitador:
             <br>
@@ -159,31 +159,26 @@
 
             <br><br>
 
-            Las invitaciones ofrecidas han sido aceptadas.
+            Las invitaciones ofrecidas fueron aceptadas
             <br>
-            Los participantes han completado su incorporación al expediente.
+            ...y los participantes completaron su incorporación.
 
             <br><br>
 
-            A partir de este momento, nuestra función será brindarles los medios necesarios para que puedan conocerse.
+            Ahora, nuestra función será brindarles los medios necesarios para que puedan conocerse.
 
             <br><br>
 
             <strong>COMIENZA LA FASE CORTEJO</strong>
 
-            <br><br>
 
             entre
 
-            <br><br>
+            <br>
 
             <span class="nombre" id="cortejoPretendiente"></span>
 
-            <br><br>
-
             y
-
-            <br><br>
 
             <span class="nombre" id="cortejoPretendido"></span>
 
@@ -197,7 +192,9 @@
 
             <br><br>
 
-            <strong>ÉXITOS.</strong>
+            <strong>Éxitos les desea</strong>
+            <br>
+             <strong>"HacemeGancho"</strong>
 
         </div>
 
@@ -210,19 +207,19 @@
     <script>
 
         const nombrePretendiente =
-            localStorage.getItem('hg_nombre') || 'Pretendiente';
+            localStorage.getItem('hg_nombre_pretendiente') || 'Pretendiente';
 
         const nombreFacilitador =
-            localStorage.getItem('hg_facilitador_nombre') || 'Facilitador';
+            localStorage.getItem('hg_nombre_facilitador') || 'Facilitador';
 
         const nombrePretendido =
-            localStorage.getItem('hg_pretendido_nombre') || 'Pretendido/a';
+            localStorage.getItem('hg_nombre_pretendido') || 'Pretendido';
 
         const fotoPretendiente =
-            localStorage.getItem('hg_foto_perfil');
+            localStorage.getItem('hg_foto_pretendiente');
 
         const fotoPretendido =
-            localStorage.getItem('hg_pretendido_foto');
+            localStorage.getItem('hg_foto_pretendido');
 
         document.getElementById('pretendiente').textContent =
             nombrePretendiente;
@@ -247,8 +244,8 @@
 
         if (fotoPretendiente) {
 
-            document.getElementById('fotoPretendiente').innerHTML =
-                '<img src="' + fotoPretendiente + '">';
+                document.getElementById('fotoPretendiente').innerHTML =
+                    '<img src="' + fotoPretendiente + '" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">';
         }
 
         if (fotoPretendido) {

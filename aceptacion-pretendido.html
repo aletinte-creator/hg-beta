@@ -198,26 +198,30 @@
             localStorage.getItem('hg_pretendiente_nombre') || 'Alejandro';
 
         document.getElementById('nombreFacilitador').textContent =
-            localStorage.getItem('hg_facilitador_nombre') || 'Rizo';
+            localStorage.getItem('hg_nombre_facilitador') || 'Rizo';
 
         const fotoPretendiente =
-                localStorage.getItem('hg_foto_perfil');
+                localStorage.getItem('hg_foto_pretendiente');
 
         if (fotoPretendiente) {
 
-            document.getElementById('fotoPretendiente').innerHTML =
-                '<img src="' + fotoPretendiente + '">';
+            if (fotoPretendiente) {
 
+                document.getElementById('fotoPretendiente').innerHTML =
+                    '<img src="' + fotoPretendiente + '" style="width:100%;height:100%;object-fit:cover;">';
+            }
         }
 
         const fotoFacilitador =
-            localStorage.getItem('hg_facilitador_foto');
+            localStorage.getItem('hg_foto_facilitador');
 
         if (fotoFacilitador) {
 
-            document.getElementById('fotoFacilitador').innerHTML =
-                '<img src="' + fotoFacilitador + '">';
+            if (fotoFacilitador) {
 
+                document.getElementById('fotoFacilitador').innerHTML =
+                    '<img src="' + fotoFacilitador + '" style="width:100%;height:100%;object-fit:cover;">';
+            }
         }
 
         function aceptarInvitacion() {

@@ -90,7 +90,7 @@
     
         <h1>INVITACIÓN ENVIADA</h1>
     
-        <div class="foto-perfil" id="fotoPerfil"></div>
+        <div class="foto-pretendiente" id="fotoPretendiente"></div>
     
         <div class="texto">
     
@@ -127,19 +127,18 @@
     <script>
 
         document.getElementById('nombrePretendiente').textContent =
-            localStorage.getItem('hg_nombre') || '';
+            localStorage.getItem('hg_nombre_pretendiente') || '';
             
         document.getElementById('correoFacilitador').textContent =
             localStorage.getItem('hg_correo_facilitador') || '';
 
-        const foto = localStorage.getItem('hg_foto_perfil');
+        const foto = localStorage.getItem('hg_foto_pretendiente');
 
         if (foto) {
 
-            document.getElementById('fotoPerfil').innerHTML =
-                '<img src="' + foto + '">';
-
-        }
+                document.getElementById('fotoPretendiente').innerHTML =
+                    '<img src="' + foto + '" style="width:150px;height:150px;border-radius:50%;object-fit:cover;">';
+            }
 
     </script>
 

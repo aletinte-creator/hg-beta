@@ -122,7 +122,7 @@
 
     <div class="campo">
         <label>Nombre</label>
-        <input type="text" id="nombre" oninput="localStorage.setItem('hg_nombre', this.value)">
+        <input type="text" id="nombre" oninput="localStorage.setItem('hg_nombre_pretendido', this.value)">
     </div>
 
     <div class="campo">
@@ -164,67 +164,59 @@
 <script>
 
     const preview = document.getElementById('preview');
-    const video = document.getElementById('video');
+        const video = document.getElementById('video');
 
-    navigator.mediaDevices.getUserMedia({
-        video: {
-            facingMode: "user"
-        }
-    })
-        .then(stream => {
-
-            video.srcObject = stream;
-            preview.addEventListener('click', function () {
-
-                const canvas = document.createElement('canvas');
-
-                canvas.width = video.videoWidth;
-                canvas.height = video.videoHeight;
-
-                const ctx = canvas.getContext('2d');
-
-                ctx.drawImage(
-                    video,
-                    0,
-                    0,
-                    canvas.width,
-                    canvas.height
-                );
-
-                const foto = canvas.toDataURL('image/png');
-
-                localStorage.setItem(
-                    'hg_foto_perfil',
-                    foto
-                );
-                preview.innerHTML =
-                    '<img src="' + foto + '" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">';
-
-                stream.getTracks().forEach(
-                    track => track.stop()
-                );
-            });
-        })
-
-        .catch(error => {
-
-            console.error(error);
-            preview.innerHTML =
-                '<div style="padding:25px;text-align:center;">No se pudo acceder a la cámara.</div>';
-        });
-
-    function continuarPerfil() {
-
-            const rol = localStorage.getItem('hg_rol');
-
-            if (rol === 'PRETENDIDO') {
-
-                window.location.href =
-                    'apertura-lograda.html';
-
-                return;
+        navigator.mediaDevices.getUserMedia({
+            video: {
+                facingMode: "user"
             }
+        })
+            .then(stream => {
 
+                video.srcObject = stream;
+
+                preview.addEventListener('click', function () {
+
+                    const canvas = document.createElement('canvas');
+
+                    canvas.width = video.videoWidth;
+                    canvas.height = video.videoHeight;
+
+                    const ctx = canvas.getContext('2d');
+
+                    ctx.drawImage(
+                        video,
+                        0,
+                        0,
+                        canvas.width,
+                        canvas.height
+                    );
+
+                    const foto = canvas.toDataURL('image/png');
+
+                    localStorage.setItem(
+                        'hg_foto_pretendido',
+                        foto
+                    );
+
+                    preview.innerHTML =
+                        '<img src="' + foto + '" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">';
+
+                    ;
+                });
+            })
+            .catch(error => {
+
+                console.error(error);
+
+                preview.innerHTML =
+                    '<div style="padding:25px;text-align:center;">No se pudo acceder a la cámara.</div>';
+            });
+
+        function continuarPerfil() {
+
+            window.location.href =
+                'apertura-lograda.html';
         }
 
 </script>

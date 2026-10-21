@@ -138,9 +138,9 @@
 
         <h1>PERFIL COMPLETADO</h1>
 
-        <div class="foto-perfil" id="fotoPerfil"></div>
+        <div class="foto-pretendiente" id="fotoPretendiente"></div>
 
-        <div class="nombre-perfil" id="nombrePerfil">
+        <div class="nombre-pretendiente" id="nombrePretendiente">
             Tu Nombre
         </div>
 
@@ -168,7 +168,7 @@
 
         <div class="texto">
 
-            Ya puedes enviar una invitación.
+            Ya puedes enviar la invitación.
 
         </div>
 
@@ -180,19 +180,19 @@
 
     <script>
 
-        const foto = localStorage.getItem('hg_foto_perfil');
+        const foto = localStorage.getItem('hg_foto_pretendiente');
 
         if (foto) {
 
-            document.getElementById('fotoPerfil').innerHTML =
-                '<img src="' + foto + '">';
+            document.getElementById('fotoPretendiente').innerHTML =
+                '<img src="' + foto + '" style="width:150px;height:150px;border-radius:50%;object-fit:cover;">';
         }
 
         const nombreGuardado =
-            localStorage.getItem('hg_nombre');
+            localStorage.getItem('hg_nombre_pretendiente');
 
         if (nombreGuardado) {
-            document.getElementById('nombrePerfil').textContent =
+            document.getElementById('nombrePretendiente').textContent =
                 nombreGuardado;
         }
 
