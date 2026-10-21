@@ -103,13 +103,14 @@
 
         #titulo {
 
-            margin-top: 4px;
+            margin-top: 10px;
+            margin-bottom: -15px;
 
-            font-size: clamp(30px, 7vw, 56px);
+            font-size: clamp(34px, 8vw, 62px);
 
             font-weight: normal;
 
-            letter-spacing: 2px;
+            letter-spacing: 3px;
 
             color: #5a1020;
 
@@ -124,20 +125,31 @@
 ================================================== */
 
        #subtitulo {
-
-            font-size: clamp(18px, 4vw, 30px);
-
+            font-size: clamp(20px, 4vw, 35px);
             font-weight: bold;
-
             color: #5a1020;
-
             max-width: 80%;
-
-            opacity: 0;
-
-            animation: fadeIn 1s forwards;
-            animation-delay: 6s;
+            line-height: 1.6;
         }
+          .linea {
+    opacity: 0;
+    margin-bottom: 10px;
+}
+
+.linea1 {
+    animation: fadeIn 1s forwards;
+    animation-delay: 5s;
+}
+
+.linea2 {
+    animation: fadeIn 1s forwards;
+    animation-delay: 6.30s;
+}
+
+.linea3 {
+    animation: fadeIn 1s forwards;
+    animation-delay: 8s;
+}
 
         /* ==================================================
    BOTÓN
@@ -167,7 +179,7 @@
             opacity: 0;
 
             animation: fadeIn 1s forwards;
-            animation-delay: 8.5s;
+            animation-delay: 9s;
 
             transition: all .25s ease;
         }
@@ -304,7 +316,9 @@
         <section class="medio">
 
             <div id="subtitulo">
-                "La nueva forma de conectarse"
+                <div class="linea linea1">"Una nueva forma...</div>
+                <div class="linea linea2">de Conectarse</div>
+                <div class="linea linea3">... y Conocerse"</div>
             </div>
 
         </section>
