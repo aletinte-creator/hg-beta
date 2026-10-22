@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ciclo Interrumpido</title>
+
+    <style>
+        body {
+            background: #ddd7c8;
+            font-family: Georgia, serif;
+            color: #7a1f2b;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 700px;
+            padding: 30px;
+            text-align: center;
+        }
+
+        h1 {
+            font-weight: normal;
+            margin-bottom: 30px;
+        }
+
+        .persona {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .foto {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 2px solid #7a1f2b;
+            margin: 0 auto 10px auto;
+        }
+
+        .foto img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .nombre {
+            font-weight: bold;
+            font-size: 24px;
+        }
+
+        .texto {
+            margin-top: 20px;
+            line-height: 1.9;
+            font-size: 18px;
+        }
+
+        button {
+            width: 320px;
+            margin: 18px auto 0;
+            padding: 14px;
+            border: 2px solid #7a1f2b;
+            border-radius: 25px;
+            background: transparent;
+            color: #7a1f2b;
+            font-size: 16px;
+            cursor: pointer;
+            display: block;
+        }
+
+        button:hover {
+            background: #7a1f2b;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>CICLO INTERRUMPIDO</h1>
+
+        <div class="persona">
+
+            <div class="foto" id="fotoRemitente"></div>
+
+            <div class="nombre" id="nombreRemitente"></div>
+
+        </div>
+
+        <div class="texto">
+
+            <p>
+                <strong>
+                    Has agotado los recursos disponibles para continuar Cortejando.
+                </strong>
+            </p>
+
+            <p>
+                Cada uno de ustedes dispone de recursos individuales (tiempo y mensajes) para comunicarse.
+            </p>
+
+            <p>
+                El Cortejo se interrumpió porque has agotado tus recursos,
+                aunque <strong id="nombreOtro"></strong>
+                todavía conserva recursos activos.
+            </p>
+
+            <p>
+                Para reiniciar tu comunicación deberás consumir un Café.
+            </p>
+
+        </div>
+
+        <button>
+            CONSUMIR CAFÉ
+        </button>
+
+        <button>
+            VOLVER MÁS TARDE
+        </button>
+
+    </div>
+
+    <script>
+
+        const nombreRemitente =
+            localStorage.getItem('hg_nombre_pretendiente') || 'Pretendiente';
+
+        const nombreDestino =
+            localStorage.getItem('hg_nombre_pretendido') || 'Pretendido';
+
+        const fotoRemitente =
+            localStorage.getItem('hg_foto_pretendiente');
+
+        document.getElementById('nombreRemitente').textContent =
+            nombreRemitente;
+
+        document.getElementById('nombreOtro').textContent =
+            nombreDestino;
+
+        if (fotoRemitente) {
+            document.getElementById('fotoRemitente').innerHTML =
+                '<img src="' + fotoRemitente + '">';
+        }
+
+    </script>
+
+</body>
+
+</html>

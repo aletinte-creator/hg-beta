@@ -300,23 +300,20 @@
                             if (resultado.valido) {
 
                                 alert('Comunicación enviada correctamente');
-
                                 document.getElementById('mensaje').value = '';
-
                                 document.getElementById('fotoComunicacion').value = '';
-
                                 restantes.textContent = 200;
 
                             } else {
-                                alert('No fue posible enviar la comunicación');
+                                window.location.href = 'ciclo-interrumpido.html';
                             }
                         })
                         .catch(error => {
+
                             console.error(error);
                             alert('Error de conexión');
 
                         });
-
                 });
             
     </script>
