@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio Cortejo</title>
+
+    <style>
+        body {
+            background: #ddd7c8;
+            font-family: Georgia, serif;
+            color: #7a1f2b;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 700px;
+            text-align: center;
+        }
+
+        .foto-remitente {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid #7a1f2b;
+            margin: 0 auto 15px auto;
+        }
+
+        .foto-remitente img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .foto-destino {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 2px solid #7a1f2b;
+            margin: 10px auto;
+        }
+
+        .foto-destino img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .nombre-remitente {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .nombre-destino {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .panel {
+            background: rgba(255, 255, 255, 0.5);
+            border: 1px solid #7a1f2b;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .subtitulo {
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 140px;
+            resize: none;
+            border: 1px solid #7a1f2b;
+            border-radius: 8px;
+            padding: 12px;
+            font-family: Georgia, serif;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        .contador {
+            margin-top: 10px;
+            text-align: right;
+            font-size: 14px;
+        }
+
+        .selector-foto {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #c0b8a8;
+        }
+
+        .mensaje-anterior {
+            background: #f6f2ea;
+            border-left: 4px solid #7a1f2b;
+            padding: 12px;
+            margin-top: 10px;
+            text-align: left;
+            font-style: italic;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            margin-top: 20px;
+            border: 1px solid #7a1f2b;
+            border-radius: 25px;
+            background: transparent;
+            color: #7a1f2b;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #7a1f2b;
+            color: white;
+        }
+
+        hr {
+            margin: 25px 0;
+            border: none;
+            border-top: 1px solid #c0b8a8;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="foto-remitente" id="fotoRemitente"></div>
+
+        <div class="nombre-remitente" id="nombreRemitente">
+            Remitente
+        </div>
+
+        <div class="panel">
+
+            <div class="subtitulo">
+                Nueva Comunicación
+            </div>
+
+            <textarea id="mensaje" maxlength="200" placeholder="Escribí tu mensaje..."></textarea>
+
+            <div class="contador">
+                Caracteres restantes:
+                <span id="restantes">200</span>
+            </div>
+
+            <div class="selector-foto">
+
+                <strong>o enviar una fotografía</strong>
+
+                <br><br>
+
+                <input type="file" id="fotoComunicacion" accept="image/*">
+
+                <br><br>
+
+                Máximo permitido:
+                <strong>4 MB</strong>
+
+            </div>
+
+            <hr>
+
+            <h3>Respondiendo a:</h3>
+
+            <div class="foto-destino" id="fotoDestino"></div>
+
+            <div class="nombre-destino" id="nombreDestino">
+                Destinatario
+            </div>
+
+            <div class="mensaje-anterior">
+
+                Aquí aparecerá la última comunicación recibida.
+
+            </div>
+
+        </div>
+
+        <button id="btnEnviar">
+            ENVIAR COMUNICACIÓN
+        </button>
+
+    </div>
+
+    <script>
+
+        const nombreRemitente =
+            localStorage.getItem('hg_nombre_pretendiente') || 'Pretendiente';
+
+        const nombreDestino =
+            localStorage.getItem('hg_nombre_pretendido') || 'Pretendido';
+
+        const fotoRemitente =
+            localStorage.getItem('hg_foto_pretendiente');
+
+        const fotoDestino =
+            localStorage.getItem('hg_foto_pretendido');
+
+            const expedienteId = 12;
+
+                const emisorId = 33;
+
+                const receptorId = 35;
+
+        document.getElementById('nombreRemitente').textContent =
+            nombreRemitente;
+
+        document.getElementById('nombreDestino').textContent =
+            nombreDestino;
+
+        if (fotoRemitente) {
+            document.getElementById('fotoRemitente').innerHTML =
+                '<img src="' + fotoRemitente + '">';
+        }
+
+        if (fotoDestino) {
+            document.getElementById('fotoDestino').innerHTML =
+                '<img src="' + fotoDestino + '">';
+        }
+
+        const textarea =
+            document.getElementById('mensaje');
+
+        const restantes =
+            document.getElementById('restantes');
+
+        textarea.addEventListener('input', () => {
+
+            restantes.textContent =
+                200 - textarea.value.length;
+
+        });
+        document
+                .getElementById('btnEnviar')
+                .addEventListener('click', () => {
+
+                    const contenido =
+                        document.getElementById('mensaje').value;
+
+                    const archivo =
+                        document.getElementById('fotoComunicacion')
+                            .files[0]; 
+
+                    if (contenido.trim() && archivo) {
+
+                        alert(
+                            'La comunicación puede contener texto o fotografía, pero no ambos.'
+                        );
+                        return;
+                    }
+
+                    if (!contenido.trim() && !archivo) {
+                        alert(
+                            'Debe enviar un texto o una fotografía.'
+                        );
+                        return;
+                    }
+
+                    const datos = {
+
+                        expedienteId,
+                        emisorId,
+                        receptorId,
+                        contenido: contenido.trim(),
+                        fotoUrl: archivo ? archivo.name : null
+                    };
+
+                    fetch(
+                        'http://localhost:3000/comunicacion-cortejo/enviar',
+                        {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(datos)
+                        }
+                    )
+                        .then(res => res.json())
+                        .then(resultado => {
+
+                            console.log(resultado);
+
+                            if (resultado.valido) {
+
+                                alert('Comunicación enviada correctamente');
+
+                                document.getElementById('mensaje').value = '';
+
+                                document.getElementById('fotoComunicacion').value = '';
+
+                                restantes.textContent = 200;
+
+                            } else {
+                                alert('No fue posible enviar la comunicación');
+                            }
+                        })
+                        .catch(error => {
+                            console.error(error);
+                            alert('Error de conexión');
+
+                        });
+
+                });
+            
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fase Cortejo</title>
+
+    <style>
+        body {
+            background: #ddd7c8;
+            font-family: Georgia, serif;
+            color: #7a1f2b;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 700px;
+            padding: 30px;
+            text-align: center;
+        }
+
+        h1 {
+            font-weight: normal;
+            margin-bottom: 30px;
+        }
+
+        .fotos {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 15px;
+        }
+
+        .persona {
+            text-align: center;
+        }
+
+        .foto {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 2px solid #7a1f2b;
+            margin: 0 auto 10px auto;
+        }
+
+        .foto img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .nombre {
+            font-weight: bold;
+        }
+
+        .texto {
+            margin-top: 30px;
+            line-height: 1.9;
+            font-size: 17px;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 18px;
+            padding: 14px;
+            border: 1px solid #7a1f2b;
+            border-radius: 25px;
+            background: transparent;
+            color: #7a1f2b;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #7a1f2b;
+            color: white;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>FASE CORTEJO</h1>
+
+        <div class="fotos">
+
+            <div class="persona">
+                <div class="foto" id="fotoPretendiente"></div>
+                <div class="nombre" id="nombrePretendiente"></div>
+            </div>
+
+            <div class="persona">
+                <div class="foto" id="fotoPretendido"></div>
+                <div class="nombre" id="nombrePretendido"></div>
+            </div>
+
+        </div>
+
+        <div class="texto">
+
+            HacemeGancho les da la bienvenida
+            <br>
+            a la Fase Cortejo.
+            <br><br>
+
+            Como bienvenida, HacemeGancho les invita un café.
+            <br><br>
+
+            Dispondrán de 4 mensajes libres cada uno para comenzar a interactuar.
+            <br><br>
+
+            Cada mensaje podrá contener:
+            <br>
+            hasta 200 caracteres de texto
+            <br>
+            o hasta 4 MB en fotografías.
+            <br><br>
+
+            Les recordamos mantener el respeto mutuo durante toda la interacción.
+            <br><br>
+
+            Que la curiosidad los acerque,
+            <br>
+            que el respeto los acompañe,
+            <br>
+            y que fluya la continuidad.
+
+        </div>
+
+        <button>
+            ENVIAR MENSAJE
+        </button>
+
+        <button>
+            SOLICITAR CAFÉ
+        </button>
+
+    </div>
+
+    <script>
+
+        const nombrePretendiente =
+            localStorage.getItem('hg_nombre_pretendiente') || 'Pretendiente';
+
+        const nombrePretendido =
+            localStorage.getItem('hg_nombre_pretendido') || 'Pretendido';
+
+        const fotoPretendiente =
+            localStorage.getItem('hg_foto_pretendiente');
+
+        const fotoPretendido =
+            localStorage.getItem('hg_foto_pretendido');
+
+        document.getElementById('nombrePretendiente').textContent =
+            nombrePretendiente;
+
+        document.getElementById('nombrePretendido').textContent =
+            nombrePretendido;
+
+        if (fotoPretendiente) {
+            document.getElementById('fotoPretendiente').innerHTML =
+                '<img src="' + fotoPretendiente + '">';
+        }
+
+        if (fotoPretendido) {
+            document.getElementById('fotoPretendido').innerHTML =
+                '<img src="' + fotoPretendido + '">';
+        }
+
+    </script>
+
+</body>
+
+</html>
