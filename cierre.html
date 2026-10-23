@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cierre</title>
+
+    <style>
+        :root {
+            --bordo: #7b0f16;
+            --fondo: #ede9df;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--fondo);
+            color: var(--bordo);
+            font-family: Georgia, serif;
+            min-height: 100vh;
+        }
+
+        .contenedor {
+            max-width: 900px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        /* ==========================================
+   TAIJITU DE CIERRE
+========================================== */
+
+.superior {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    margin-bottom: 40px;
+    height: 260px;
+}
+
+#taijitu {
+    position: relative;
+    width: 220px;
+    height: 220px;
+    animation: desrotar 6s ease forwards;
+}
+
+.mitad {
+    position: absolute;
+    width: 220px;
+    height: 220px;
+    overflow: visible;
+}
+
+/* SEPARACIÓN */
+
+.blanca {
+    animation: separarBlanca 6s ease forwards;
+}
+
+.negra {
+    animation: separarNegra 6s ease forwards;
+}
+
+/* TRANSFORMACIÓN DE COLOR */
+
+.forma-blanca {
+    animation: colorBlancaInversa 6s linear forwards;
+}
+
+.forma-negra {
+    animation: colorNegraInversa 6s linear forwards;
+}
+
+.punto-blanco {
+    animation: colorPuntoBlancoInverso 6s linear forwards;
+}
+
+.punto-negro {
+    animation: colorPuntoNegroInverso 6s linear forwards;
+}
+
+/* ==========================================
+   ANIMACIONES DE MOVIMIENTO
+========================================== */
+
+@keyframes desrotar {
+
+    from {
+        transform: rotate(-360deg);
+    }
+
+    to {
+        transform: rotate(0deg);
+    }
+
+}
+
+@keyframes separarBlanca {
+
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-180px);
+    }
+
+}
+
+@keyframes separarNegra {
+
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(180px);
+    }
+
+}
+
+/* ==========================================
+   ANIMACIONES DE COLOR
+========================================== */
+
+@keyframes colorBlancaInversa {
+
+    from {
+        fill: #ddd7c8;
+        stroke: #7b0f16;
+        stroke-width: 3px;
+    }
+
+    to {
+        fill: #ffffff;
+        stroke: #000000;
+        stroke-width: 1px;
+    }
+
+}
+
+@keyframes colorNegraInversa {
+
+    from {
+        fill: #7b0f16;
+        stroke: #7b0f16;
+        stroke-width: 3px;
+    }
+
+    to {
+        fill: #000000;
+        stroke: #000000;
+        stroke-width: 1px;
+    }
+
+}
+
+@keyframes colorPuntoBlancoInverso {
+
+    from {
+        fill: #7b0f16;
+    }
+
+    to {
+        fill: #000000;
+    }
+
+}
+
+@keyframes colorPuntoNegroInverso {
+
+    from {
+        fill: #ddd7c8;
+    }
+
+    to {
+        fill: #ffffff;
+    }
+
+}
+
+/* ==========================================
+   CONTENIDO
+========================================== */
+
+@keyframes aparecerContenido {
+
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+
+}
+
+        /* ==========================================
+           CONTENIDO
+        ========================================== */
+
+        .contenido {
+            opacity: 0;
+            animation: aparecerContenido 2s ease forwards;
+            animation-delay: 3.5s;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        .subtitulo {
+            text-align: center;
+            font-size: 1.5rem;
+            margin-bottom: 35px;
+            font-style: italic;
+        }
+
+        .panel {
+            border: 1px solid var(--bordo);
+            border-radius: 20px;
+            padding: 35px;
+            line-height: 1.9;
+        }
+
+        .panel p {
+            margin-bottom: 18px;
+        }
+
+        .destacado {
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin: 25px 0;
+        }
+
+        .expediente {
+            margin-top: 35px;
+            border: 1px solid var(--bordo);
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .expediente h3 {
+            margin-bottom: 15px;
+        }
+
+        .numero-expediente {
+            font-size: 2rem;
+            font-weight: bold;
+            letter-spacing: 4px;
+            margin: 20px 0;
+        }
+
+        .botones {
+            display: flex;
+            justify-content: center;
+            margin-top: 35px;
+            margin-bottom: 40px;
+        }
+
+        .boton {
+            width: 260px;
+            padding: 20px;
+            border: 2px solid var(--bordo);
+            border-radius: 35px;
+            background: transparent;
+            color: var(--bordo);
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: .4s;
+        }
+
+        .boton:hover {
+            background: var(--bordo);
+            color: white;
+        }
+
+        @media(max-width:768px) {
+
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            .panel {
+                padding: 20px;
+            }
+
+            .numero-expediente {
+                font-size: 1.5rem;
+            }
+
+            #taijitu {
+
+                position: relative;
+                width: 300px;
+                height: 180px;
+                margin: 0 auto;
+            }
+
+            .mitad {
+
+                position: absolute;
+                top: 0;
+                left: 60px;
+                width: 180px;
+                height: 180px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="contenedor">
+
+        <!-- TAIJITU INVERTIDO -->
+
+        <section class="superior">
+
+            <div id="taijitu">
+
+            <!-- BLANCA -->
+            
+            <svg class="mitad blanca" viewBox="0 0 200 200">
+            
+                <path class="forma-blanca" d="
+                    M100 0
+                    A100 100 0 0 1 100 200
+                    A50 50 0 0 0 100 100
+                    A50 50 0 0 1 100 0
+                    Z" fill="#ddd7c8" stroke="#7b0f16" stroke-width="3" />
+            
+                <circle class="punto-blanco" cx="100" cy="50" r="12" fill="#7b0f16" />
+            
+            </svg>
+            
+            <!-- NEGRA -->
+            
+            <svg class="mitad negra" viewBox="0 0 200 200">
+            
+                <g transform="rotate(180 100 100)">
+            
+                    <path class="forma-negra" d="
+                        M100 0
+                        A100 100 0 0 1 100 200
+                        A50 50 0 0 0 100 100
+                        A50 50 0 0 1 100 0
+                        Z" fill="#7b0f16" stroke="#7b0f16" stroke-width="3" />
+            
+                    <circle class="punto-negro" cx="100" cy="50" r="12" fill="#ddd7c8" />
+            
+                </g>
+            
+            </svg>
+
+            </div>
+
+        </section>
+
+        <!-- CONTENIDO -->
+
+        <div class="contenido">
+
+            <h1>DECIDIERON IRSE...</h1>
+
+            <div class="subtitulo">
+                Pero HacemeGancho se resiste.
+            </div>
+
+            <div class="panel">
+
+                <p>
+                    Como buen Celestino, Comadrona o Gancho que es,
+                    no va a dejarlos ir tan fácil.
+                </p>
+
+                <p>
+                    Vuelvan a pensarlo durante las próximas 24 horas.
+                </p>
+
+                <p>
+                    ¿Ha ocurrido algo que realmente justifique
+                    no continuar conociéndose?
+                </p>
+
+                <p>
+                    Tras conocer sus informes, creemos que todavía pueden existir
+                    conversaciones, coincidencias o perspectivas que merezcan una
+                    última oportunidad.
+                </p>
+
+                <p>
+                    ¿Sabían que las parejas suelen tardar más de un año en comenzar
+                    a considerar que conocen realmente a la otra persona?
+                </p>
+
+                <p>
+                    Ustedes compartieron esta continuidad durante
+                    <strong id="tiempoContinuidad"></strong>.
+                </p>
+
+                <div class="destacado">
+
+                    Quizá sea suficiente.<br>
+                    Quizá no.<br>
+                    Sólo ustedes pueden saberlo.
+
+                </div>
+
+                <p>
+                    Si se han tratado incorrectamente, si se han faltado el respeto
+                    o simplemente han descubierto que no se gustan,
+                    sean honestos con ustedes mismos.
+                </p>
+
+                <p>
+                    En ese caso, les diremos chau.
+                </p>
+
+                <p>
+                    Esperando, de todo corazón,
+                    que vuelvan a intentarlo.
+                    Juntos o por separado.
+                </p>
+
+                <p>
+                    La decisión siempre será de ustedes.
+                </p>
+
+                <p>
+                    Pero antes de despedirse definitivamente,
+                    HacemeGancho les propone regalarle
+                    24 horas más a esta continuidad.
+                </p>
+
+            </div>
+
+            <div class="expediente">
+
+                <h3>
+                    Antes de despedirnos, queremos dejarles algo.
+                </h3>
+
+                <div class="numero-expediente" id="numeroExpediente">
+                    Nº 00000001
+                </div>
+
+                <p>
+                    Si alguna vez deciden volver a intentarlo juntos,
+                    conserven este número.
+                </p>
+
+                <p>
+                    HacemeGancho podrá reabrir esta continuidad
+                    a partir de este expediente.
+                </p>
+
+                <p style="margin-top:25px">
+                    Porque algunas historias terminan.
+                </p>
+                
+                <p class="destacado">
+                    Y otras sólo necesitan más tiempo.
+                </p>
+
+
+            </div>
+
+            <div class="botones">
+
+                <button class="boton" onclick="window.location.href='index.html'">
+                    ADIÓS
+                </button>
+
+                <button class="boton-secundario">
+                    INFORMAR INCIDENCIA
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+  cript>
+
+    /*
+    ==========================================
+    DATOS DEL BACKEND
+    ==========================================
+
+    expedienteId
+    expedienteFechaCreacion
+
+    Ejemplo:
+
+    expedienteId = 15428
+
+    expedienteFechaCreacion =
+        "2026-09-15T08:30:00"
+
+    */
+
+    const expedienteId = 15428;
+
+    const expedienteFechaCreacion =
+        "2026-09-15T08:30:00";
+
+
+    /*
+    ==========================================
+    EXPEDIENTE
+    ==========================================
+    */
+
+    document.getElementById("numeroExpediente")
+        .textContent =
+        "Nº " + expedienteId;
+
+
+    /*
+    ==========================================
+    TIEMPO REAL DE CONTINUIDAD
+    ==========================================
+    */
+
+    function calcularTiempoContinuidad(fechaInicio) {
+
+        const inicio = new Date(fechaInicio);
+        const ahora = new Date();
+
+        let minutosTotales =
+            Math.floor(
+                (ahora - inicio) / 1000 / 60
+            );
+
+        const dias =
+            Math.floor(minutosTotales / 1440);
+
+        minutosTotales -= dias * 1440;
+
+        const horas =
+            Math.floor(minutosTotales / 60);
+
+        minutosTotales -= horas * 60;
+
+        const minutos =
+            minutosTotales;
+
+        let partes = [];
+
+        if (dias > 0) {
+
+            partes.push(
+                dias + " " +
+                (dias === 1 ? "día" : "días")
+            );
+
+        }
+
+        if (horas > 0) {
+
+            partes.push(
+                horas + " " +
+                (horas === 1 ? "hora" : "horas")
+            );
+
+        }
+
+        if (minutos > 0 || partes.length === 0) {
+
+            partes.push(
+                minutos + " " +
+                (minutos === 1 ? "minuto" : "minutos")
+            );
+
+        }
+
+        return partes.join(", ");
+    }
+
+
+    document.getElementById("tiempoContinuidad")
+        .textContent =
+        calcularTiempoContinuidad(
+            expedienteFechaCreacion
+        );
+
+</script>
+
+</body>
+
+</html>

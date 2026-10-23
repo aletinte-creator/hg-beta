@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio Cortejo</title>
+    <title>Estableciendo el contacto...</title>
 
     <style>
         body {
@@ -23,9 +23,17 @@
             text-align: center;
         }
 
+        .titulo-pantalla {
+            text-align: center;
+            font-size: 34px;
+            font-weight: bold;
+            color: #7a1f2b;
+            margin-bottom: 20px;
+        }
+
         .foto-remitente {
-            width: 180px;
-            height: 180px;
+            width: 153px;
+            height: 153px;
             border-radius: 50%;
             overflow: hidden;
             border: 3px solid #7a1f2b;
@@ -80,9 +88,9 @@
 
         textarea {
             width: 100%;
-            height: 140px;
+            height: 120px;
             resize: none;
-            border: 1px solid #7a1f2b;
+            border: 2px solid #7a1f2b;
             border-radius: 8px;
             padding: 12px;
             font-family: Georgia, serif;
@@ -115,7 +123,7 @@
             width: 100%;
             padding: 14px;
             margin-top: 20px;
-            border: 1px solid #7a1f2b;
+            border: 2px solid #7a1f2b;
             border-radius: 25px;
             background: transparent;
             color: #7a1f2b;
@@ -141,6 +149,10 @@
 
     <div class="container">
 
+        <h1 class="titulo-pantalla">
+            Estableciendo el contacto...
+        </h1>
+
         <div class="foto-remitente" id="fotoRemitente"></div>
 
         <div class="nombre-remitente" id="nombreRemitente">
@@ -150,7 +162,7 @@
         <div class="panel">
 
             <div class="subtitulo">
-                Nueva Comunicación
+                ¿Qué le querés decir?
             </div>
 
             <textarea id="mensaje" maxlength="200" placeholder="Escribí tu mensaje..."></textarea>
@@ -186,9 +198,7 @@
             </div>
 
             <div class="mensaje-anterior">
-
                 Aquí aparecerá la última comunicación recibida.
-
             </div>
 
         </div>
@@ -213,11 +223,9 @@
         const fotoDestino =
             localStorage.getItem('hg_foto_pretendido');
 
-            const expedienteId = 12;
-
-                const emisorId = 33;
-
-                const receptorId = 35;
+        const expedienteId = 12;
+        const emisorId = 33;
+        const receptorId = 35;
 
         document.getElementById('nombreRemitente').textContent =
             nombreRemitente;
@@ -227,12 +235,12 @@
 
         if (fotoRemitente) {
             document.getElementById('fotoRemitente').innerHTML =
-                '<img src="' + fotoRemitente + '">';
+                '<img src="' + fotoRemitente + '" alt="Remitente">';
         }
 
         if (fotoDestino) {
             document.getElementById('fotoDestino').innerHTML =
-                '<img src="' + fotoDestino + '">';
+                '<img src="' + fotoDestino + '" alt="Destino">';
         }
 
         const textarea =
@@ -247,75 +255,93 @@
                 200 - textarea.value.length;
 
         });
+
         document
-                .getElementById('btnEnviar')
-                .addEventListener('click', () => {
+            .getElementById('btnEnviar')
+            .addEventListener('click', () => {
 
-                    const contenido =
-                        document.getElementById('mensaje').value;
+                const contenido =
+                    document.getElementById('mensaje').value;
 
-                    const archivo =
-                        document.getElementById('fotoComunicacion')
-                            .files[0]; 
+                const archivo =
+                    document.getElementById('fotoComunicacion')
+                        .files[0];
 
-                    if (contenido.trim() && archivo) {
+                if (contenido.trim() && archivo) {
 
-                        alert(
-                            'La comunicación puede contener texto o fotografía, pero no ambos.'
-                        );
-                        return;
+                    alert(
+                        'La comunicación puede contener texto o fotografía, pero no ambos.'
+                    );
+
+                    return;
+                }
+
+                if (!contenido.trim() && !archivo) {
+
+                    alert(
+                        'Debe enviar un texto o una fotografía.'
+                    );
+
+                    return;
+                }
+
+                const datos = {
+
+                    expedienteId,
+                    emisorId,
+                    receptorId,
+                    contenido: contenido.trim(),
+                    fotoUrl: archivo ? archivo.name : null
+
+                };
+
+                fetch(
+                    'http://localhost:3000/comunicacion-cortejo/enviar',
+                    {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(datos)
                     }
+                )
+                    .then(res => res.json())
+                    .then(resultado => {
 
-                    if (!contenido.trim() && !archivo) {
-                        alert(
-                            'Debe enviar un texto o una fotografía.'
-                        );
-                        return;
-                    }
+                        console.log(resultado);
 
-                    const datos = {
+                        if (resultado.valido) {
 
-                        expedienteId,
-                        emisorId,
-                        receptorId,
-                        contenido: contenido.trim(),
-                        fotoUrl: archivo ? archivo.name : null
-                    };
+                            alert(
+                                'Comunicación enviada correctamente'
+                            );
 
-                    fetch(
-                        'http://localhost:3000/comunicacion-cortejo/enviar',
-                        {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify(datos)
+                            document.getElementById('mensaje').value = '';
+                            document.getElementById('fotoComunicacion').value = '';
+
+                            restantes.textContent = 200;
+
                         }
-                    )
-                        .then(res => res.json())
-                        .then(resultado => {
 
-                            console.log(resultado);
+                        window.location.href =
+                            'ciclo-interrumpido.html';
 
-                            if (resultado.valido) {
+                    })
+                    .catch(error => {
 
-                                alert('Comunicación enviada correctamente');
-                                document.getElementById('mensaje').value = '';
-                                document.getElementById('fotoComunicacion').value = '';
-                                restantes.textContent = 200;
+                        console.error(error);
 
-                            } else {
-                                window.location.href = 'ciclo-interrumpido.html';
-                            }
-                        })
-                        .catch(error => {
+                        alert(
+                            'No fue posible contactar al servidor. Se continuará la prueba.'
+                        );
 
-                            console.error(error);
-                            alert('Error de conexión');
+                        window.location.href =
+                            'ciclo-interrumpido.html';
 
-                        });
-                });
-            
+                    });
+
+            });
+
     </script>
 
 </body>

@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solicitud de Cierre</title>
+
+    <style>
+        :root {
+            --bordo: #7b0f16;
+            --fondo: #ede9df;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--fondo);
+            color: var(--bordo);
+            font-family: Georgia, serif;
+        }
+
+        .contenedor {
+            max-width: 900px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        .subtitulo {
+            text-align: center;
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        /* PARTICIPANTES */
+
+        .participantes {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 35px;
+        }
+
+        .persona {
+            text-align: center;
+        }
+
+        .foto {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 2px solid var(--bordo);
+            margin: 0 auto 10px auto;
+        }
+
+        .foto img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .nombre {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .flecha {
+            font-size: 32px;
+            font-weight: bold;
+        }
+
+        /* PANEL */
+
+        .panel {
+            border: 1px solid var(--bordo);
+            border-radius: 20px;
+            padding: 35px;
+        }
+
+        .panel h2 {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 25px;
+        }
+
+        .panel p {
+            line-height: 1.9;
+            margin-bottom: 18px;
+        }
+
+        .lista {
+            margin-left: 25px;
+            line-height: 2;
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+
+        .alerta {
+            margin-top: 20px;
+            font-weight: bold;
+            font-size: 1.15rem;
+        }
+
+        /* ESTADO */
+
+        .estado {
+            border: 1px solid var(--bordo);
+            border-radius: 15px;
+            margin-top: 30px;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .estado h3 {
+            margin-bottom: 18px;
+        }
+
+        .nombre-espera {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .pendiente {
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        /* BOTONES */
+
+        .botones {
+            margin-top: 35px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .boton {
+            min-width: 220px;
+            padding: 16px 20px;
+            border: 1px solid var(--bordo);
+            border-radius: 35px;
+            background: transparent;
+            color: var(--bordo);
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .boton:hover {
+            background: var(--bordo);
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            .participantes {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .flecha {
+                transform: rotate(90deg);
+            }
+
+            .foto {
+                width: 110px;
+                height: 110px;
+            }
+
+            .nombre {
+                font-size: 1.4rem;
+            }
+
+            .panel {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="contenedor">
+
+        <h1>Solicitud de Cierre</h1>
+
+        <div class="subtitulo">
+            Uno de los participantes ha solicitado finalizar este ciclo.
+        </div>
+
+        <div class="participantes">
+
+            <div class="persona">
+                <div class="foto" id="fotoRemitente"></div>
+                <div class="nombre" id="nombreRemitente"></div>
+            </div>
+
+            <div class="flecha">↔</div>
+
+            <div class="persona">
+                <div class="foto" id="fotoDestino"></div>
+                <div class="nombre" id="nombreDestino"></div>
+            </div>
+
+        </div>
+
+        <div class="panel">
+
+            <h2>
+                Toda Continuidad merece una decisión compartida.
+            </h2>
+
+            <p>
+                La Mediación es una instancia excepcional destinada a quienes consideran que aún existe algo importante
+                por aclarar o expresar, algo valioso por comprender o algo interesante por conocer antes de finalizar
+                este ciclo.
+            </p>
+
+            <p>
+                Durante la Mediación, ambos participantes dispondrán de un espacio protegido para revisar lo ocurrido y
+                descubrir aspectos diferentes de la persona con la que están interactuando.
+            </p>
+
+            <p>
+                Para ello, HacemeGancho les propone responder
+                <strong>15 dilemas éticos y decisionales (no es una trivia)</strong>.
+                Una vez completados, cada participante recibirá dos informes:
+                el informe de <strong id="nombrePretendienteInforme">Pretendiente</strong>
+                y el informe de
+                <strong id="nombrePretendidoInforme">Pretendido</strong>.
+                Esto les permitirá conocer coincidencias, diferencias y criterios de decisión
+                de ambos, descubriendo aspectos que quizá no hayan surgido durante la conversación.
+            </p>
+
+
+            <p>
+                A través de sus respuestas, podrán identificar coincidencias, diferencias y criterios de decisión que
+                quizá no hayan aparecido durante la conversación.
+            </p>
+
+            <p>
+                La Mediación sólo podrá iniciarse cuando
+                <strong>ambos participantes</strong> la acepten.
+            </p>
+
+            <p>
+                Su valor es de <strong>2 Cafés</strong> e incluye:
+            </p>
+
+            <ul class="lista">
+                <li>Informe individual de resultados.</li>
+                <li>Acceso compartido a los informes.</li>
+                <li>4 mensajes adicionales para cada participante.</li>
+                <li>24 horas de continuidad para su debate.</li>
+            </ul>
+
+            <p class="alerta">
+                Si cualquiera de los participantes decide cerrar el ciclo,
+                el cierre será inmediato y definitivo.
+            </p>
+
+            <div class="estado">
+
+                <h3>Estado de la otra persona</h3>
+
+                <div class="nombre-espera" id="nombrePendiente">
+                    Participante
+                </div>
+
+                <div class="pendiente">
+                    ⏳ Pendiente de respuesta
+                </div>
+
+                <div>
+                    Tiempo restante: 23 h 59 min
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="botones">
+
+            <button class="boton" onclick="window.location.href='cierre.html'">
+                CERRAR EL CICLO
+            </button>
+
+            <button class="boton">
+                IR A MEDIACIÓN
+            </button>
+
+            <button class="boton" onclick="window.location.href='cierre.html'">            
+                CIERRE CON INCIDENCIAS           
+            </button>
+
+        </div>
+
+    </div>
+
+    <script>
+
+        const remitente = {
+            nombre: localStorage.getItem('hg_nombre_pretendiente') || 'Pretendiente',
+            foto: localStorage.getItem('hg_foto_pretendiente')
+        };
+
+        const destino = {
+            nombre: localStorage.getItem('hg_nombre_pretendido') || 'Pretendido',
+            foto: localStorage.getItem('hg_foto_pretendido')
+        };
+
+        document.getElementById('nombreRemitente').textContent =
+            remitente.nombre;
+
+        document.getElementById('nombreDestino').textContent =
+            destino.nombre;
+
+        document.getElementById('nombrePendiente').textContent =
+            destino.nombre;
+
+        if (remitente.foto) {
+            document.getElementById('fotoRemitente').innerHTML =
+                '<img src="' + remitente.foto + '">';
+        }
+
+        if (destino.foto) {
+            document.getElementById('fotoDestino').innerHTML =
+                '<img src="' + destino.foto + '">';
+        }
+
+        document.getElementById('nombrePretendienteInforme').textContent =
+                remitente.nombre;
+
+            document.getElementById('nombrePretendidoInforme').textContent =
+                destino.nombre;
+
+    </script>
+
+</body>
+
+</html>
