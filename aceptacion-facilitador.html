@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Invitación Recibida</title>
 
     <style>
@@ -12,12 +11,11 @@
             background: #ddd7c8;
             font-family: Georgia, serif;
             color: #7a1f2b;
-
             min-height: 100vh;
-
             display: flex;
             justify-content: center;
             align-items: center;
+            margin: 0;
         }
 
         .container {
@@ -33,20 +31,15 @@
         }
 
         .foto-perfil {
-
             width: 140px;
             height: 140px;
-
             margin: 20px auto;
-
             border-radius: 50%;
             overflow: hidden;
-
             border: 2px solid #7a1f2b;
         }
 
         .foto-perfil img {
-
             width: 100%;
             height: 100%;
             object-fit: cover;
@@ -67,26 +60,20 @@
         }
 
         button {
-
-            width: 100%;
+            width: 320px;
+            max-width: 90%;
             padding: 14px;
-
             border: 1px solid #7a1f2b;
             border-radius: 25px;
-
             background: transparent;
-
             color: #7a1f2b;
-
             font-size: 16px;
-
-            margin-top: 10px;
-
+            margin: 12px auto 0 auto;
             cursor: pointer;
+            display: block;
         }
 
         button:hover {
-
             background: #7a1f2b;
             color: white;
         }
@@ -100,7 +87,7 @@
 
         <h1>INVITACIÓN RECIBIDA</h1>
 
-        <div class="foto-pretendiente" id="fotoPretendiente"></div>
+        <div class="foto-perfil" id="fotoPretendiente"></div>
 
         <div class="texto">
 
@@ -115,14 +102,22 @@
             </div>
 
             <div class="dato" id="nombrePretendiente">
-                Alejandro
+                Pendiente
+            </div>
+
+            <div class="etiqueta">
+                Correo del Facilitador
+            </div>
+
+            <div class="dato" id="correoFacilitador">
+                Pendiente de backend
             </div>
 
             <div class="etiqueta">
                 Número de Expediente
             </div>
 
-            <div class="dato">
+            <div class="dato" id="expediente">
                 Pendiente de backend
             </div>
 
@@ -130,25 +125,41 @@
                 Número de Invitación
             </div>
 
-            <div class="dato">
+            <div class="dato" id="invitacion">
                 Pendiente de backend
+            </div>
+
+            <div class="etiqueta">
+                Rol Asignado
+            </div>
+
+            <div class="dato" id="rolAsignado">
+                FACILITADOR
+            </div>
+
+            <div class="etiqueta">
+                Estado de Apertura
+            </div>
+
+            <div class="dato" id="estadoApertura">
+                Esperando aceptación del Facilitador
             </div>
 
             <div class="etiqueta">
                 Aplicación HG
             </div>
 
-            <div class="dato">
+            <div class="dato" id="linkHG">
                 Pendiente de backend
             </div>
 
             <br>
 
-            <p style="font-weight:bold; font-size:18px;">
+            <p style="font-weight:bold;font-size:18px;">
                 Tu función es la más importante en HacemeGancho durante el proceso de Apertura.
             </p>
-            
-            <p style="font-weight:bold; font-size:14px;">
+
+            <p style="font-weight:bold;font-size:14px;">
                 Sin tu colaboración es imposible iniciar el proceso.
             </p>
 
@@ -158,7 +169,7 @@
             ACEPTAR
         </button>
 
-        <button>
+        <button onclick="history.back()">
             RECHAZAR
         </button>
 
@@ -169,24 +180,45 @@
         document.getElementById('nombrePretendiente').textContent =
             localStorage.getItem('hg_nombre_pretendiente') || '';
 
-        const foto = localStorage.getItem('hg_foto_pretendiente');
+        document.getElementById('correoFacilitador').textContent =
+            localStorage.getItem('hg_correo_facilitador') || 'Pendiente de backend';
+
+        document.getElementById('expediente').textContent =
+            localStorage.getItem('hg_expediente_id') || 'Pendiente de backend';
+
+        document.getElementById('invitacion').textContent =
+            localStorage.getItem('hg_invitacion_id') || 'Pendiente de backend';
+
+        document.getElementById('linkHG').textContent =
+            localStorage.getItem('hg_link_hg') || 'Pendiente de backend';
+
+        const foto =
+            localStorage.getItem('hg_foto_pretendiente');
 
         if (foto) {
 
-            const foto = localStorage.getItem('hg_foto_pretendiente');
+            document.getElementById('fotoPretendiente').innerHTML =
+                '<img src="' + foto + '" style="width:100%;height:100%;object-fit:cover;">';
 
-            if (foto) {
-
-                document.getElementById('fotoPretendiente').innerHTML =
-                    '<img src="' + foto + '" style="width:120px;height:120px;border-radius:50%;object-fit:cover;">';
-            }
         }
+
         function aceptarInvitacion() {
 
-                localStorage.setItem('hg_rol', 'FACILITADOR');
-
-                window.location.href = 'perfil-facilitador.html';
-            }
+            localStorage.setItem(
+                'hg_rol',
+                'FACILITADOR'
+            );
+            localStorage.setItem(
+                'hg_expediente_id',
+                document.getElementById('expediente').textContent
+            );
+            localStorage.setItem(
+                'hg_invitacion_id',
+                document.getElementById('invitacion').textContent
+            );
+            window.location.href =
+                'perfil-facilitador.html';
+        }
 
     </script>
 

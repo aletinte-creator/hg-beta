@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perfil en el Ciclo</title>
+    <title>Perfil del Pretendido</title>
 
     <style>
         * {
@@ -20,15 +20,13 @@
         }
 
         .container {
-
             width: 100%;
             max-width: 500px;
             margin: auto;
-            padding: 25px 20px 40px 20px;
+            padding: 25px 20px 40px;
         }
 
         h1 {
-
             text-align: center;
             font-size: 30px;
             font-weight: normal;
@@ -36,7 +34,6 @@
         }
 
         .instantanea {
-
             width: 120px;
             height: 120px;
             margin: 0 auto 25px auto;
@@ -44,35 +41,29 @@
             border-radius: 50%;
             background: white;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
-            text-align: center;
             cursor: pointer;
-            font-size: 14px;
-            color: #7a1f2b;
+            overflow: hidden;
         }
 
         .presentacion {
-
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             font-size: 16px;
+            font-weight: bold;
         }
 
         .campo {
-
             margin-bottom: 18px;
         }
 
         label {
-
             display: block;
             margin-bottom: 6px;
             font-size: 15px;
         }
 
         input {
-
             width: 100%;
             padding: 12px;
             border: 1px solid #b7b0a3;
@@ -81,8 +72,17 @@
             background: white;
         }
 
-        .boton {
+        input[readonly] {
+            background: #f3efe6;
+            color: #7a1f2b;
+        }
 
+        .separador {
+            margin: 30px 0 15px 0;
+            border-top: 1px solid #b7b0a3;
+        }
+
+        .boton {
             width: 100%;
             margin-top: 25px;
             padding: 14px;
@@ -95,9 +95,16 @@
         }
 
         .boton:hover {
-
             background: #7a1f2b;
             color: white;
+        }
+
+        video,
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
         }
     </style>
 
@@ -105,66 +112,97 @@
 
 <body>
 
-    <div class="instantanea" id="preview">
+    <div class="container">
 
-        <video id="video" autoplay playsinline style="width:100%;height:100%;object-fit:cover;border-radius:50%;">
-        </video>
+        <h1>PERFIL DEL PRETENDIDO</h1>
+
+        <div class="instantanea" id="preview">
+            <video id="video" autoplay playsinline></video>
+        </div>
+
+        <br>
+
+        <div class="presentacion">
+            Presentate para participar del Ciclo
+        </div>
+
+        <br>
+
+        <p style="
+             margin-top:10px;
+             margin-bottom:25px;
+             font-size:14px;
+             color:#7a1f2b;
+             line-height:1.5;
+            ">
+            Datos que no pueden ser modificados:
+        </p>
+
+        <div class="campo">
+            <label>Correo electrónico</label>
+            <input type="email" id="correoPretendido" readonly>
+        </div>
+
+        <div class="campo">
+            <label>Número de Expediente</label>
+            <input type="text" id="expedienteId" readonly>
+        </div>
+
+        <div class="campo">
+            <label>Número de Invitación</label>
+            <input type="text" id="invitacionId" readonly>
+        </div>
+
+        <div class="campo">
+            <label>Rol Asignado</label>
+            <input type="text" id="rolAsignado" value="PRETENDIDO" readonly>
+        </div>
+
+        <div class="presentacion">
+            Completá tus datos personales faltantes:
+        </div>
+
+        <div class="campo">
+            <label>Nombre</label>
+            <input type="text" id="nombre" oninput="localStorage.setItem('hg_nombre_pretendido', this.value)">
+        </div>
+
+        <div class="campo">
+            <label>Número de documento (sin puntos ni guiones)</label>
+            <input type="text" id="documento" maxlength="8" inputmode="numeric">
+        </div>
+
+        <div class="campo">
+            <label>Nacionalidad</label>
+            <input type="text" id="nacionalidad">
+        </div>
+
+        <div class="campo">
+            <label>Fecha de nacimiento</label>
+            <input type="date" id="fechaNacimiento">
+        </div>
+
+        <div class="campo">
+            <label>Teléfono</label>
+            <input type="tel" id="telefono">
+        </div>
+
+        <button class="boton" onclick="continuarPerfil()">
+            CONTINUAR
+        </button>
+
+        <button class="boton" onclick="window.location.href='normas.html'">
+            VOLVER
+        </button>
 
     </div>
 
-    <!--
-        <input type="file" id="camara" accept="image/*" capture="user" style="display:none;">
-        -->
+    <script>
 
-    <div class="presentacion">
-        Presentate para participar:
-    </div>
-
-    <div class="campo">
-        <label>Nombre</label>
-        <input type="text" id="nombre" oninput="localStorage.setItem('hg_nombre_pretendido', this.value)">
-    </div>
-
-    <div class="campo">
-        <label>Correo electrónico</label>
-        <input type="email">
-    </div>
-
-    <div class="campo">
-        <label>Número de documento (sin puntos ni guiones)</label>
-        <input type="text" maxlength="8" inputmode="numeric">
-    </div>
-
-    <div class="campo">
-        <label>Nacionalidad</label>
-        <input type="text">
-    </div>
-
-    <div class="campo">
-        <label>Fecha de nacimiento</label>
-        <input type="date">
-    </div>
-
-    <div class="campo">
-        <label>Teléfono</label>
-        <input type="tel">
-    </div>
-
-    <button class="boton" onclick="continuarPerfil()">
-        CONTINUAR
-    </button>
-
-    <button class="boton" onclick="window.location.href='normas.html'">
-        VOLVER
-    </button>
-
-    </div>
-</body>
-
-<script>
-
-    const preview = document.getElementById('preview');
+        const preview = document.getElementById('preview');
         const video = document.getElementById('video');
+
+        let streamActivo = null;
 
         navigator.mediaDevices.getUserMedia({
             video: {
@@ -172,6 +210,8 @@
             }
         })
             .then(stream => {
+
+                streamActivo = stream;
 
                 video.srcObject = stream;
 
@@ -199,26 +239,103 @@
                         foto
                     );
 
+                    if (streamActivo) {
+
+                        streamActivo.getTracks().forEach(
+                            track => track.stop()
+                        );
+
+                        video.srcObject = null;
+                        streamActivo = null;
+                    }
+
                     preview.innerHTML =
                         '<img src="' + foto + '" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">';
-
-                    ;
                 });
             })
+
             .catch(error => {
 
                 console.error(error);
 
                 preview.innerHTML =
                     '<div style="padding:25px;text-align:center;">No se pudo acceder a la cámara.</div>';
+
             });
 
-        function continuarPerfil() {
+        document.getElementById('correoPretendido').value =
+            localStorage.getItem('hg_correo_pretendido') || '';
 
-            window.location.href =
-                'apertura-lograda.html';
+        document.getElementById('expedienteId').value =
+            localStorage.getItem('hg_expediente_id') || '';
+
+        document.getElementById('invitacionId').value =
+            localStorage.getItem('hg_invitacion_id') || '';
+
+        document.getElementById('rolAsignado').value =
+            'PRETENDIDO';
+
+        async function continuarPerfil() {
+
+            const nombre = document.getElementById('nombre').value;
+            const documento = document.getElementById('documento').value;
+            const nacionalidad = document.getElementById('nacionalidad').value;
+            const fechaNacimiento = document.getElementById('fechaNacimiento').value;
+            const telefono = document.getElementById('telefono').value;
+
+            const email =
+                localStorage.getItem('hg_correo_pretendido');
+
+            try {
+
+                const respuesta = await fetch(
+                    'http://localhost:3000/personas',
+                    {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            email: email,
+                            usuario_id: 1,
+                            nombre: nombre,
+                            documento: Number(documento),
+                            nacionalidad: nacionalidad,
+                            fecha_nacimiento: fechaNacimiento,
+                            telefono: telefono,
+                            rol: 'PRETENDIDO'
+                        })
+                    }
+                );
+
+                const persona =
+                    await respuesta.json();
+
+                console.log(
+                    'PRETENDIDO CREADO',
+                    persona
+                );
+
+                localStorage.setItem(
+                    'hg_persona_id_pretendido',
+                    persona.id
+                );
+
+                window.location.href =
+                    'apertura-lograda.html';
+
+            } catch (error) {
+
+                console.error(error);
+
+                alert(
+                    'No se pudo crear el Pretendido.'
+                );
+            }
         }
 
-</script>
+    </script>
+
+</body>
 
 </html>

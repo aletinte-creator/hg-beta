@@ -11,12 +11,10 @@
             background: #ddd7c8;
             font-family: Georgia, serif;
             color: #7a1f2b;
-
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-
             margin: 0;
         }
 
@@ -82,19 +80,34 @@
             margin-top: 30px;
         }
 
+        .correo-input {
+            width: 320px;
+            max-width: 90%;
+            padding: 10px;
+            border: 1px solid #b7b0a3;
+            border-radius: 8px;
+            background: white;
+            text-align: center;
+            font-size: 15px;
+        }
+
         .resumen {
             margin-top: 35px;
+            line-height: 1.8;
         }
 
         button {
-            width: 100%;
+            width: 320px;
+            max-width: 90%;
             padding: 14px;
             border: 1px solid #7a1f2b;
             border-radius: 25px;
             background: transparent;
             color: #7a1f2b;
             cursor: pointer;
-            margin-top: 10px;
+            margin: 12px auto 0 auto;
+            display: block;
+            font-size: 16px;
         }
 
         button:hover {
@@ -158,7 +171,16 @@
                 Correo del Facilitador
             </div>
 
-            <div class="dato" id="correo"></div>
+            <div class="dato" id="correoFacilitador"></div>
+
+            <div class="etiqueta">
+                Correo del Pretendido
+            </div>
+
+            <div class="dato">
+                <input type="email" id="correoPretendido" class="correo-input"
+                    placeholder="Ingresar correo del Pretendido">
+            </div>
 
             <div class="etiqueta">
                 Número de Expediente
@@ -173,6 +195,14 @@
             </div>
 
             <div class="dato" id="invitacion">
+                Pendiente de backend
+            </div>
+
+            <div class="etiqueta">
+                Estado de Apertura
+            </div>
+
+            <div class="dato" id="estadoApertura">
                 Pendiente de backend
             </div>
 
@@ -192,11 +222,15 @@
                 El Pretendido recibirá:
             </p>
 
+            <br>
+
             <p>
                 ✓ Fotografía de los participantes<br>
                 ✓ Identificación de los participantes<br>
                 ✓ Correo del Facilitador<br>
                 ✓ Número de Invitación<br>
+                ✓ Estado de Apertura<br>
+                ✓ Datos del Expediente<br>
                 ✓ Enlace de acceso a HG
             </p>
 
@@ -214,7 +248,7 @@
 
     <script>
 
-        document.getElementById('correo').textContent =
+        document.getElementById('correoFacilitador').textContent =
             localStorage.getItem('hg_correo_facilitador') || '';
 
         document.getElementById('nombrePretendiente').textContent =
@@ -223,8 +257,17 @@
         document.getElementById('nombreFacilitador').textContent =
             localStorage.getItem('hg_nombre_facilitador') || '';
 
+        document.getElementById('expediente').textContent =
+            localStorage.getItem('hg_expediente_id') || 'Pendiente de backend';
+
+        document.getElementById('invitacion').textContent =
+            localStorage.getItem('hg_invitacion_id') || 'Pendiente de backend';
+
+        document.getElementById('estadoApertura').textContent =
+            localStorage.getItem('hg_estado_apertura') || 'APERTURA EN CURSO';
+
         document.getElementById('linkHG').textContent =
-            'Pendiente de backend';
+            localStorage.getItem('hg_link_hg') || 'Pendiente de backend';
 
         const fotoPretendiente =
             localStorage.getItem('hg_foto_pretendiente');
@@ -233,6 +276,7 @@
 
             document.getElementById('fotoPretendiente').innerHTML =
                 '<img src="' + fotoPretendiente + '">';
+
         }
 
         const fotoFacilitador =
@@ -242,12 +286,19 @@
 
             document.getElementById('fotoFacilitador').innerHTML =
                 '<img src="' + fotoFacilitador + '">';
+
         }
 
         function enviarInvitacion() {
 
+            localStorage.setItem(
+                'hg_correo_pretendido',
+                document.getElementById('correoPretendido').value
+            );
+
             window.location.href =
                 'invitacion-enviada-pretendido.html';
+
         }
 
     </script>

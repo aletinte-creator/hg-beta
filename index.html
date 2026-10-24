@@ -65,8 +65,8 @@
         #taijitu {
             position: relative;
 
-            width: 150px;
-            height: 150px;
+            width: 160px;
+            height: 160px;
 
             animation: rotar 4s linear forwards;
             animation-delay: 4s;
@@ -86,7 +86,7 @@
                 aparecer 1s forwards,
                 moverBlanca 4s forwards;
 
-            animation-delay: 1s, 1s;
+            animation-delay: 0.5s, 0.5s;
         }
 
         .negra {
@@ -94,27 +94,27 @@
                 aparecer 1s forwards,
                 moverNegra 4s forwards;
 
-            animation-delay: 1s, 1s;
+            animation-delay: 0.5s, 0.5s;
         }
 
         .forma-blanca {
             animation: colorBlanca 2s forwards;
-            animation-delay: 4s;
+            animation-delay: 1.5s;
         }
 
         .forma-negra {
             animation: colorNegra 2s forwards;
-            animation-delay: 4s;
+            animation-delay: 1.5s;
         }
 
         .punto-blanco {
             animation: colorPuntoBlanco 2s forwards;
-            animation-delay: 4s;
+            animation-delay: 1.5s;
         }
 
         .punto-negro {
             animation: colorPuntoNegro 2s forwards;
-            animation-delay: 4s;
+            animation-delay: 1.5s;
         }
 
         /* ==================================================
@@ -125,17 +125,11 @@
 
             margin-top: 10px;
             margin-bottom: -15px;
-
             font-size: clamp(34px, 8vw, 62px);
-
             font-weight: normal;
-
             letter-spacing: 3px;
-
             color: #5a1020;
-
             opacity: 0;
-
             animation: fadeIn 1s forwards;
             animation-delay: 3s;
         }
@@ -148,12 +142,12 @@
             font-size: clamp(20px, 4vw, 35px);
             font-weight: bold;
             color: #5a1020;
-            max-width: 80%;
+            max-width: 70%;
             line-height: 1.6;
         }
           .linea {
             opacity: 0;
-            margin-bottom: 10px;
+            margin-bottom: 22px;
         }
 
           .linea1 {
@@ -177,30 +171,20 @@
 
         #inicio {
 
-            min-width: 180px;
-
-            padding: 12px 30px;
-
-            border: 1px solid #7a1f2b;
+            min-width: 220px;
+            padding: 15px 36px;
+            border: 3px solid #7a1f2b;
             border-radius: 25px;
-
             background: transparent;
-
             color: #7a1f2b;
-
             font-family: inherit;
-
-            font-size: clamp(16px, 3vw, 22px);
-
+            font-size: clamp(20px, 3.7vw, 26px);
+            font-weight: bold;
             letter-spacing: 2px;
-
             cursor: pointer;
-
             opacity: 0;
-
             animation: fadeIn 1s forwards;
             animation-delay: 9s;
-
             transition: all .25s ease;
         }
 
@@ -256,7 +240,7 @@
                 transform: rotate(0deg);
             }
             to {
-                transform: rotate(-290deg);
+                transform: rotate(-320deg);
             }
         }
 
@@ -404,9 +388,7 @@
         <section class="inferior">
 
             <button id="inicio" onclick="window.location.href='normas.html'">
-
                 EMPECEMOS
-
             </button>
 
         </section>
