@@ -137,9 +137,17 @@
 
         <h1>INVITACIÓN AL PRETENDIDO</h1>
 
-        <div class="texto">
-            Verifique cuidadosamente la información antes de enviar la invitación.
-        </div>
+        <p style="
+            font-size:18px;
+            font-weight:bold;
+            color:#7a1f2b;
+            text-align:center;
+            line-height:1.6;
+            margin-bottom:25px;
+        ">
+            Verificá cuidadosamente el correo electrónico<br>
+            del Pretendido/a antes de enviar la invitación.
+        </p>
 
         <div class="participantes">
 
@@ -291,15 +299,24 @@
 
         function enviarInvitacion() {
 
-            localStorage.setItem(
-                'hg_correo_pretendido',
-                document.getElementById('correoPretendido').value
-            );
+                localStorage.setItem(
+                    'hg_correo_pretendido',
+                    document.getElementById('correoPretendido').value
+                );
 
-            window.location.href =
-                'invitacion-enviada-pretendido.html';
+                localStorage.setItem(
+                    'hg_expediente_id',
+                    document.getElementById('expediente').textContent.trim()
+                );
 
-        }
+                localStorage.setItem(
+                    'hg_invitacion_id',
+                    document.getElementById('invitacion').textContent.trim()
+                );
+
+                window.location.href =
+                    'invitacion-enviada-pretendido.html';
+            }
 
     </script>
 

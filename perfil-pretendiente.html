@@ -259,62 +259,83 @@
         document.getElementById('rolAsignado').value =
             'PRETENDIENTE';
 
-        async function continuarPerfil() {
+         async function continuarPerfil() {
 
-            const nombre = document.getElementById('nombre').value;
-            const documento = document.getElementById('documento').value;
-            const nacionalidad = document.getElementById('nacionalidad').value;
-            const fechaNacimiento = document.getElementById('fechaNacimiento').value;
-            const telefono = document.getElementById('telefono').value;
-            const email = localStorage.getItem('hg_correo_pretendiente');
+                const email =
+                    document.getElementById('correoPretendiente').value.trim();
 
-            try {
+                const nombre =
+                    document.getElementById('nombre').value.trim();
 
-                const respuesta = await fetch(
-                    'http://localhost:3000/personas',
-                    {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            email: email,
-                            usuario_id: 1,
-                            nombre: nombre,
-                            documento: Number(documento),
-                            nacionalidad: nacionalidad,
-                            fecha_nacimiento: fechaNacimiento,
-                            telefono: telefono,
-                            rol: 'PRETENDIENTE'
-                        })
-                    }
-                );
+                const documento =
+                    document.getElementById('documento').value;
 
-                const persona =
-                    await respuesta.json();
+                const nacionalidad =
+                    document.getElementById('nacionalidad').value.trim();
 
-                console.log(
-                    'PRETENDIENTE CREADO',
-                    persona
-                );
+                const fechaNacimiento =
+                    document.getElementById('fechaNacimiento').value;
 
-                localStorage.setItem(
-                    'hg_persona_id_pretendiente',
-                    persona.id
-                );
+                const telefono =
+                    document.getElementById('telefono').value.trim();
 
-                window.location.href =
-                    'confirmar-invitacion-facilitador.html';
+                if (!email) {
+                    alert('Debe ingresar un correo electrónico.');
+                    return;
+                }
 
-            } catch (error) {
+                try {
 
-                console.error(error);
+                    const respuesta = await fetch(
+                        'http://localhost:3000/personas',
+                        {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                email,
+                                nombre,
+                                documento: Number(documento),
+                                nacionalidad,
+                                fecha_nacimiento: fechaNacimiento,
+                                telefono,
+                                rol: 'PRETENDIENTE'
+                            })
+                        }
+                    );
 
-                alert(
-                    'No se pudo crear el Pretendiente.'
-                );
-            }
-        }
+                    const persona = await respuesta.json();
+
+                    console.log('PRETENDIENTE CREADO', persona);
+
+                    localStorage.setItem(
+                        'hg_correo_pretendiente',
+                        email
+                    );
+
+                    localStorage.setItem(
+                        'hg_persona_id_pretendiente',
+                        persona.id
+                    );
+
+                    localStorage.setItem(
+                        'hg_nombre_pretendiente',
+                        nombre
+                    );
+
+                    window.location.href =
+                        'confirmar-invitacion-facilitador.html';
+
+                } catch (error) {
+
+                    console.error(error);
+
+                    alert(
+                        'No se pudo crear el Pretendiente.'
+                    );
+                }
+            }   
 
     </script>
 

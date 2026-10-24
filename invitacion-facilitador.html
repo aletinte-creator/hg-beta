@@ -106,22 +106,26 @@
         }
 
         button {
+    width: 340px;
+    max-width: 90%;
 
-            width: 100%;
+    margin: 0 auto;
+    display: block;
 
-            padding: 14px;
+    padding: 14px;
 
-            border: 1px solid #7a1f2b;
-            border-radius: 25px;
+    border: 1px solid #7a1f2b;
+    border-radius: 25px;
 
-            background: transparent;
+    background: transparent;
 
-            color: #7a1f2b;
+    color: #7a1f2b;
 
-            font-size: 16px;
+    font-size: 16px;
 
-            cursor: pointer;
-        }
+    cursor: pointer;
+}
+
 
         button:hover {
 
@@ -133,85 +137,76 @@
 </head>
 
 <body>
-
+    
     <div class="container">
-
+    
         <h1>PERFIL COMPLETADO</h1>
-
+    
         <div class="foto-pretendiente" id="fotoPretendiente"></div>
-
+    
         <div class="nombre-pretendiente" id="nombrePretendiente">
-            Tu Nombre
+            Pendiente
         </div>
-
+    
         <div class="texto">
-
+    
             Tu información ha quedado registrada.
+    
             <br><br>
-
+    
             Tu participación ha sido habilitada.
+    
             <br><br>
-
-            El Facilitador podrá visualizar únicamente tu
-            fotografía y tu nombre durante esta etapa.
+    
+            Durante esta etapa, el Facilitador podrá visualizar
+            únicamente la fotografía, el nombre y el correo
+            electrónico del Pretendiente.
+    
             <br><br>
-
-            Estamos generando tu invitación.
-
+    
+            <p style="
+                font-size:18px;
+                font-weight:bold;
+                color:#7a1f2b;
+                text-align:center;
+                line-height:1.6;
+                margin:0;
+            ">
+                Cuando gustes, puedes iniciar<br>
+                la generación de la invitación.
+            </p>
+    
         </div>
+    
+        <button onclick="generarInvitacion()">
+            GENERAR INVITACIÓN
+        </button>
+    
+    </div>
 
-        <label>
-            Correo electrónico del Facilitador
-        </label>
-
-        <input type="email" placeholder="correo@ejemplo.com">
-
-        <div class="texto">
-
-            Ya puedes enviar la invitación.
-
-        </div>
+    
 
         <button onclick="generarInvitacion()">
             GENERAR INVITACIÓN
         </button>
 
-    </div>
+        </div>
 
     <script>
 
         const foto = localStorage.getItem('hg_foto_pretendiente');
 
-        if (foto) {
+            if (foto) {
 
-            document.getElementById('fotoPretendiente').innerHTML =
-                '<img src="' + foto + '" style="width:150px;height:150px;border-radius:50%;object-fit:cover;">';
-        }
+                document.getElementById('fotoPretendiente').innerHTML =
+                    '<img src="' + foto + '" style="width:150px;height:150px;border-radius:50%;object-fit:cover;">';
+            }
 
-        const nombreGuardado =
-            localStorage.getItem('hg_nombre_pretendiente');
-
-        if (nombreGuardado) {
-            document.getElementById('nombrePretendiente').textContent =
-                nombreGuardado;
-        }
-
-        function generarInvitacion() {
-
-                const correo = document.querySelector('input[type="email"]').value.trim();
-
-                if (!correo) {
-                    alert('Ingrese el correo electrónico del Facilitador');
-                    return;
-                }
-                localStorage.setItem(
-                    'hg_correo_facilitador',
-                    correo
-                );
+            function generarInvitacion() {
                 window.location.href = 'confirmar-invitacion-facilitador.html';
             }
 
-    </script>
+        </script>
 
 </body>
 
